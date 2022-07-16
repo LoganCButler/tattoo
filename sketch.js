@@ -81,7 +81,6 @@ function draw() {
     a.show();
   }
   
-  console.log(count)
   if (count > windowWidth || count > 10000) {
     noLoop();
   }
