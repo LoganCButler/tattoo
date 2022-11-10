@@ -19,27 +19,39 @@ class Arc {
     this.dir = dir;
   }
 
-  show() {
-    // let diameter = abs(this.end - this.start);
-    // let x = (this.end + this.start) / 2;
+	drawCircle(){
+    let diameter = abs(this.end - this.start);
+    let x = (this.end + this.start) / 2;
 
-    let length = abs(this.end - this.start);
+		if (this.dir == 0) {
+			arc(x, 0, diameter, diameter, PI, 0);
+		} else {
+			arc(x, 0, diameter, diameter, 0, PI);
+		}
+	}
+
+	drawTriangle(){
+		let length = abs(this.end - this.start);
     let midPoint = (this.end + this.start) / 2;
-    let hight = Math.sqrt(Math.pow(length, 2) - Math.pow(length/2, 2)) * .5;
-    
-    stroke(255);
-    strokeWeight(0.5);
-    noFill();
-    if (this.dir == 0) {
-      // arc(x, 0, diameter, diameter, PI, 0);
+		let hight = length / 2;
+
+		if (this.dir == 0) {
       line(this.start, 0, midPoint, hight);
       line(midPoint, hight, this.end, 0);
 
     } else {
-      // arc(x, 0, diameter, diameter, 0, PI);
       line(this.start, 0, midPoint, hight * -1);
       line(midPoint, hight * -1, this.end, 0);
     }
+	}
+
+  show() {    
+    stroke(255);
+    strokeWeight(0.5);
+    noFill();
+
+		// this.drawCircle();
+		this.drawTriangle();
   }
 }
 
